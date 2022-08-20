@@ -17,10 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val homeRepository: HomeRepository) : ViewModel(){
 
-    fun test() : String{
-        return homeRepository.test()
-    }
-
     val employeeData = MutableLiveData<ResponseData<EmployeeDataModel>>()
     fun getEmployeeData() {
         employeeData.setLoading(null)

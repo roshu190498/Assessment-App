@@ -12,6 +12,6 @@ interface HomeApi {
     /**
      * Get Employeee Data API
      */
-    @GET("61cf7d91-a7f8-405e-b505-sakjdfa;lsdkfj67926b759d78")
+    @GET("61cf7d91-a7f8-405e-b505-67926b759d78")
     fun getEmployeeData(): Call<EmployeeDataModel>
 }
