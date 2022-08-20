@@ -50,7 +50,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     //for data binding
-    def binding_version="3.1.2"
+    def binding_version="3.6.0-alpha10"
     kapt "com.android.databinding:compiler:$binding_version"
 
     //for material design
@@ -73,9 +73,9 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 
     //for ktx lib for fragment and activity also use for shared view model DI
-//    def activity_version="1.1.0"
-//    implementation "androidx.activity:activity-ktx:$activity_version"
-//    def fragment_version = "1.3.0-alpha08"
+    def activity_version="1.5.1"
+    implementation "androidx.activity:activity-ktx:$activity_version"
+//    def fragment_version = "1.5.2"
 //    implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     // for image loading
