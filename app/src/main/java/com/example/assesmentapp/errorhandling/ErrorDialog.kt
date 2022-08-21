@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.setFragmentResult
 import com.example.assesmentapp.R
+import com.example.assesmentapp.base.TARGETREQUESTCODE
 import com.example.assesmentapp.databinding.FragmentErrorDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -14,6 +16,7 @@ class ErrorDialog : BottomSheetDialogFragment() {
 
     protected lateinit var mDataBinding:FragmentErrorDialogBinding
 
+    private var mRequestCode : String?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -31,7 +34,14 @@ class ErrorDialog : BottomSheetDialogFragment() {
 
     override fun onStart() {
         super.onStart()
-
+        mDataBinding.btnCancel.setOnClickListener {
+            dismiss()
+            activity?.finish()
+        }
+        mDataBinding.btnOk.setOnClickListener {
+            dismiss()
+            setFragmentResult(arguments?.getString(TARGETREQUESTCODE)?:"",Bundle())
+        }
     }
     companion object {
 

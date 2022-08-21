@@ -142,6 +142,7 @@ class HomeActivity : AppCompatActivity() {
                         showBottomSheet(this)
                         setFragmentResultListener("Error_code_1001"){requestKey, bundle ->
                             //Handle Click Here
+                            homeViewModel.getEmployeeData()
                         }
                     }
 
