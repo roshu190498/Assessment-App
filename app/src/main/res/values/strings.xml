@@ -9,6 +9,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="txtSomethingWentWrong">Something went wriong</string>
     <string name="txtOkay">Okay</string>
+    <string name="txtRetry">Retry</string>
     <string name="txtCancel">Cancel</string>
 
 </resources>

@@ -38,7 +38,7 @@ class ErrorDialog : BottomSheetDialogFragment() {
             dismiss()
             activity?.finish()
         }
-        mDataBinding.btnOk.setOnClickListener {
+        mDataBinding.btnRetry.setOnClickListener {
             dismiss()
             setFragmentResult(arguments?.getString(TARGETREQUESTCODE)?:"",Bundle())
         }
