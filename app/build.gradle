@@ -78,8 +78,8 @@ dependencies {
     //for ktx lib for fragment and activity also use for shared view model DI
     def activity_version="1.5.1"
     implementation "androidx.activity:activity-ktx:$activity_version"
-//    def fragment_version = "1.5.2"
-//    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    def fragment_version = "1.5.2"
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     // for image loading
     def glide_version="4.11.0"

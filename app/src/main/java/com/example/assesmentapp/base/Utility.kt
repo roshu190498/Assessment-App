@@ -7,6 +7,9 @@ import android.view.View
 import android.view.Window
 import com.example.assesmentapp.R
 
+
+const val TARGETREQUESTCODE = "TARGETREQUESTCODE"
+
 object Utility {
 
 

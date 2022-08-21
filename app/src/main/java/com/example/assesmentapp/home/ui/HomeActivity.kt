@@ -12,17 +12,21 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assesmentapp.R
 import com.example.assesmentapp.base.Status
+import com.example.assesmentapp.base.TARGETREQUESTCODE
 import com.example.assesmentapp.base.genericadapter.GenericAdapter
 import com.example.assesmentapp.base.loadImage
+import com.example.assesmentapp.base.showBottomSheet
 import com.example.assesmentapp.databinding.ActivityHomeBinding
 import com.example.assesmentapp.databinding.AdapterItemTestBinding
 import com.example.assesmentapp.databinding.ItemEmpDetailsBinding
+import com.example.assesmentapp.errorhandling.ErrorDialog
 import com.example.assesmentapp.home.model.Details
 import com.example.assesmentapp.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -121,13 +125,26 @@ class HomeActivity : AppCompatActivity() {
                 Status.SUCCESS -> {
 
                     it.data?.data?.let{
-                      empAdapter.setItems(it)
+                        mDatabinding.sampleTest.visibility = View.VISIBLE
+                        mDatabinding.rvEmpList.visibility = View.VISIBLE
+                        empAdapter.setItems(it)
                     }
                     progressDialog.dismiss()
                 }
                 Status.ERROR -> {
                     progressDialog.dismiss()
-                    mDatabinding.sampleTest.text = "Something went wrong"
+                    mDatabinding.sampleTest.visibility = View.GONE
+                    mDatabinding.rvEmpList.visibility = View.GONE
+                    ErrorDialog.newInstance().apply {
+                        arguments = Bundle().apply {
+                            putString(TARGETREQUESTCODE,"Error_code_1001")
+                        }
+                        showBottomSheet(this)
+                        setFragmentResultListener("Error_code_1001"){requestKey, bundle ->
+                            //Handle Click Here
+                        }
+                    }
+
                 }
             }
         })
