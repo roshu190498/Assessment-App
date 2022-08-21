@@ -19,8 +19,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.assesmentapp.R
 import com.example.assesmentapp.base.Status
 import com.example.assesmentapp.base.genericadapter.GenericAdapter
+import com.example.assesmentapp.base.loadImage
 import com.example.assesmentapp.databinding.ActivityHomeBinding
 import com.example.assesmentapp.databinding.AdapterItemTestBinding
+import com.example.assesmentapp.databinding.ItemEmpDetailsBinding
+import com.example.assesmentapp.home.model.Details
 import com.example.assesmentapp.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -35,29 +38,41 @@ class HomeActivity : AppCompatActivity() {
 
     private val homeViewModel: HomeViewModel by viewModels()
 
-    private val dummyGenericAdapter by lazy {
-        object : GenericAdapter<Int>() {
-            override fun getLayoutId(position: Int, obj: Int): Int {
-                return R.layout.adapter_item_test
+    private val empAdapter by lazy {
+        object : GenericAdapter<Details>() {
+            override fun getLayoutId(position: Int, obj: Details): Int {
+                return R.layout.item_emp_details
             }
 
             override fun getViewHolder(view: View, viewType: Int): RecyclerView.ViewHolder {
                 val inflater = LayoutInflater.from(view.context)
-                val itemAccountListBinding = AdapterItemTestBinding.inflate(inflater)
+                val itemAccountListBinding = ItemEmpDetailsBinding.inflate(inflater)
                 val lp = ConstraintLayout.LayoutParams(
                     ConstraintLayout.LayoutParams.MATCH_PARENT,
                     ConstraintLayout.LayoutParams.WRAP_CONTENT
                 )
                 itemAccountListBinding.root.layoutParams = lp
-                return TestViewHolder(itemAccountListBinding)
+                lp.bottomMargin = 10
+                return EmpViewHolder(itemAccountListBinding)
             }
         }
     }
 
-    inner class TestViewHolder(private val viewBinding: AdapterItemTestBinding) :
-        RecyclerView.ViewHolder(viewBinding.root), GenericAdapter.Binder<Int> {
-        override fun bind(data: Int) {
-            viewBinding.txtTittle.text = data.toString()
+    inner class EmpViewHolder(private val viewBinding: ItemEmpDetailsBinding) :
+        RecyclerView.ViewHolder(viewBinding.root), GenericAdapter.Binder<Details> {
+        override fun bind(data: Details) {
+            viewBinding.ivEmpIcon.loadImage(
+                data.profileImage?:"",
+                R.drawable.ic_employeee
+            )
+            viewBinding.tvEmpName.text = getString(R.string.txtName,data.employeeName)
+            viewBinding.tvAge.text = getString(R.string.txtage,data.employeeAge)
+            viewBinding.tvEmpId.text = getString(R.string.txtId,data.id)
+            viewBinding.tvSalary.text = getString(R.string.txtSalary,data.employeeSalary)
+
+            viewBinding.root.setOnClickListener {
+                viewBinding.tvSalary.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -68,11 +83,11 @@ class HomeActivity : AppCompatActivity() {
 
         homeViewModel.getEmployeeData()
 
-        mDatabinding.dummyRV.apply {
+        mDatabinding.rvEmpList.apply {
             val layoutManager = LinearLayoutManager(context)
             this.layoutManager = layoutManager
             this.setHasFixedSize(true)
-            this.adapter = dummyGenericAdapter
+            this.adapter = empAdapter
             ViewCompat.setNestedScrollingEnabled(this, false)
             this.addItemDecoration(object :
                 DividerItemDecoration(context, layoutManager.orientation) {
@@ -104,8 +119,10 @@ class HomeActivity : AppCompatActivity() {
                     progressDialog.show()
                 }
                 Status.SUCCESS -> {
-                    var dummyList = arrayListOf<Int>(1,2,3,4,5,6,7,8,9,10)
-                    dummyGenericAdapter.setItems(dummyList)
+
+                    it.data?.data?.let{
+                      empAdapter.setItems(it)
+                    }
                     progressDialog.dismiss()
                 }
                 Status.ERROR -> {

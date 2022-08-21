@@ -5,30 +5,34 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         tools:context=".home.ui.HomeActivity">
 
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/sampleTest"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_bold"
             android:gravity="center"
-            android:text="Home Page"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Employee List"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dummyRV"
+            android:id="@+id/rvEmpList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
-            tools:itemCount="1"
+            tools:itemCount="10"
+            android:fitsSystemWindows="true"
             android:overScrollMode="never"
-            tools:listitem="@layout/adapter_item_test"
+            tools:listitem="@layout/item_emp_details"
             app:layout_constraintTop_toBottomOf="@id/sampleTest"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

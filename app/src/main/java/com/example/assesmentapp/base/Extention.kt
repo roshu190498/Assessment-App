@@ -1,5 +1,9 @@
 package com.example.assesmentapp.base
 
+import androidx.annotation.DrawableRes
+import androidx.appcompat.widget.AppCompatImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,4 +31,17 @@ fun <T> Call<T>.enqueue(callback: CallBackKt<T>.() -> Unit) {
     val callBackKt = CallBackKt<T>()
     callback.invoke(callBackKt)
     this.enqueue(callBackKt)
+}
+
+
+fun AppCompatImageView.loadImage(url: String, @DrawableRes placeholder: Int?=null) {
+    Glide.with(context)
+        .load(url)
+        .transition(DrawableTransitionOptions.withCrossFade()).apply(){
+            placeholder?.let{
+                error(it)
+            }
+        }
+        .into(this)
+
 }
