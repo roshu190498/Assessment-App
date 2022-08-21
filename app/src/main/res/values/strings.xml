@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Assesment App</string>
+
+
+    <string name="txtName">Emp. Name : %s</string>
+    <string name="txtage">Emp. Age : %s</string>
+    <string name="txtId">Emp. Id : %s</string>
+    <string name="txtSalary">Emp. Salary : %s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="txtSomethingWentWrong">Something went wriong</string>
+    <string name="txtOkay">Okay</string>
+    <string name="txtRetry">Retry</string>
+    <string name="txtCancel">Cancel</string>
+
 </resources>
