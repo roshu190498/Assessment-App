@@ -1,5 +1,7 @@
 package com.example.assesmentapp.base
 
+import android.content.Context
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
@@ -51,4 +53,9 @@ fun AppCompatImageView.loadImage(url: String, @DrawableRes placeholder: Int?=nul
         }
         .into(this)
 
+}
+
+
+fun Context.showToast(msg : CharSequence){
+    Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
 }

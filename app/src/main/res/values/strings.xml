@@ -12,4 +12,13 @@
     <string name="txtRetry">Retry</string>
     <string name="txtCancel">Cancel</string>
 
+
+<!--    Sign in Page-->
+    <string name="txtEnteremail">Enter Email</string>
+    <string name="txtEnterPassword">Enter Password</string>
+    <string name="txtLoginButton">Login</string>
+    <string name="txtValidateMsg">please enter correct email and password</string>
+    <string name="txtShowLoginError">Something went wrong</string>
+<!--    Sign in Page-->
+
 </resources>
