@@ -1,6 +1,8 @@
 package com.example.assesmentapp.base
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
@@ -58,4 +60,16 @@ fun AppCompatImageView.loadImage(url: String, @DrawableRes placeholder: Int?=nul
 
 fun Context.showToast(msg : CharSequence){
     Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
+}
+
+
+
+
+/**
+ * Extention to start activity
+ */
+fun <T> Context.openActivity(it: Class<T>, extras: Bundle.() -> Unit = {}) {
+    val intent = Intent(this, it)
+    intent.putExtras(Bundle().apply(extras))
+    startActivity(intent)
 }

@@ -8,11 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.assesmentapp.R
 import com.example.assesmentapp.base.Status
-import com.example.assesmentapp.base.showBottomSheet
+import com.example.assesmentapp.base.openActivity
 import com.example.assesmentapp.base.showToast
-import com.example.assesmentapp.databinding.ActivityHomeBinding
+import com.example.assesmentapp.calculator.ui.CalculatorActivity
 import com.example.assesmentapp.databinding.ActivitySignInBinding
-import com.example.assesmentapp.home.viewmodel.HomeViewModel
 import com.example.assesmentapp.signin.model.SignInApiRequestModel
 import com.example.assesmentapp.signin.viewmodel.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,9 +38,7 @@ class SignInActivity : AppCompatActivity() {
             when(it.status){
                 Status.SUCCESS->{
                     progressDialog?.cancel()
-                    showToast(
-                        "Api Success"
-                    )
+                    openActivity(CalculatorActivity::class.java)
                 }
                 Status.LOADING->{
                     progressDialog?.show()
