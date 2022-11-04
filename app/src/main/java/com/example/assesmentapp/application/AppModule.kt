@@ -29,7 +29,7 @@ class AppModule {
     @Provides
     fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl("https://mocki.io/v1/")
+        .baseUrl("https://ani-moma-all.geospoc.io/stage/")
         .client(okHttpClient)
         .build()
 
